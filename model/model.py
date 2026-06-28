@@ -42,12 +42,12 @@ class Model:
                     if tID not in squadre:
                         pID, tID, sal = el
 
-            if nodo not in parziale and tID not in squadre:
-                parziale.append(nodo)
-                squadre.append(tID)
-                salario += sal
-                self.ricorsione(parziale, squadre, salario)
-                parziale.pop()
+                        if nodo not in parziale and tID not in squadre:
+                            parziale.append(nodo)
+                            squadre.append(tID)
+                            salario += sal
+                            self.ricorsione(parziale, squadre, salario)
+                            parziale.pop()
 
     def buildGraph(self, anno, sal):
         self._grafo.clear()
@@ -69,6 +69,8 @@ class Model:
 
     def getNodoMassimo(self):
         nodiOrdinati = sorted(self._grafo.nodes(), key=lambda x: self._grafo.degree(x), reverse = True)
+        if len(nodiOrdinati) == 0:
+            return None, None
         return nodiOrdinati[0], self._grafo.degree(nodiOrdinati[0])
 
     def getComponentiConnesse(self):

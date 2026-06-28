@@ -9,6 +9,6 @@ print(f"Grafo Creato! Il grafo ha {nodi} nodi e {archi} archi.")
 
 percorso, costo = mymodel.getBestScore()
 print(costo)
-for el in percorso:
-    print(el)
+# for el in percorso:
+    # print(el)
 

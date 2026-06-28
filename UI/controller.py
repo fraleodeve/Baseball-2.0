@@ -62,10 +62,23 @@ class Controller:
     def handleGradoMassimo(self, e):
         nodo, peso = self._model.getNodoMassimo()
         self._view._txt_result.controls.append(ft.Text())
+        if peso == None:
+            self._view._txt_result.controls.append(ft.Text(f"Non esiste un nodo di grado massimo", color="red"))
+            self._view.update_page()
+            return
         self._view._txt_result.controls.append(ft.Text(f"Nodo di grado massimo: ", color = "red"))
         self._view._txt_result.controls.append(ft.Text(f"- {nodo}"))
         self._view._txt_result.controls.append(ft.Text(f"- Grado: {peso}"))
         self._view.update_page()
 
     def handleDreamTeam(self, e):
-        pass
+        percorso, costo = self._model.getBestScore()
+        if len(percorso) == 0:
+            self._view._txt_result.controls.append(ft.Text(f"Non esiste un dream team", color="red"))
+            self._view.update_page()
+            return
+        self._view._txt_result.controls.append(ft.Text())
+        self._view._txt_result.controls.append(ft.Text(f"Dream Team di costo {costo}, costituito da:", color="red"))
+        for el in percorso:
+            self._view._txt_result.controls.append(ft.Text(f"- {el}"))
+        self._view.update_page()
